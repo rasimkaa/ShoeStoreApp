@@ -20,6 +20,8 @@ namespace ShoeStoreApp.Views
 
         private void SetupUserInterface()
         {
+            HideAllControls();
+
             if (LoginWindow.CurrentUser == null)
             {
                 TxtUserInfo.Text = "Гость";
@@ -27,26 +29,60 @@ namespace ShoeStoreApp.Views
             else
             {
                 var user = LoginWindow.CurrentUser;
-                TxtUserInfo.Text = user.FullName;
+                TxtUserInfo.Text = $"{user.FullName} ({user.Role.RoleName})";
 
-                if (user.Role.RoleName == "Менеджер" || user.Role.RoleName == "Администратор")
+                switch (user.Role.RoleName)
                 {
-                    EnableFiltersAndSearch();
-                    BtnOrders.Visibility = Visibility.Visible;
-                }
+                    case "Администратор":
+                        // АДМИНИСТРАТОР: все возможности
+                        EnableSearchAndFilters();
+                        BtnOrders.Visibility = Visibility.Visible;
+                        BtnAddProduct.Visibility = Visibility.Visible;
+                        break;
 
-                if (user.Role.RoleName == "Администратор")
-                {
-                    BtnAddProduct.Visibility = Visibility.Visible;
+                    case "Менеджер":
+                        // МЕНЕДЖЕР: все кроме добавления товара
+                        EnableSearchAndFilters();
+                        BtnOrders.Visibility = Visibility.Visible;
+                        BtnAddProduct.Visibility = Visibility.Collapsed;
+                        break;
+
+                    case "Авторизированный клиент":
+                        // АВТОРИЗОВАННЫЙ КЛИЕНТ: только поиск и фильтрация
+                        EnableSearchAndFilters();
+                        BtnOrders.Visibility = Visibility.Collapsed;
+                        BtnAddProduct.Visibility = Visibility.Collapsed;
+                        break;
+
+                    default:
+                        // По умолчанию - как гость
+                        break;
                 }
             }
         }
 
-        private void EnableFiltersAndSearch()
+        private void HideAllControls()
         {
             foreach (UIElement element in PanelFilters.Children)
             {
-                element.Visibility = Visibility.Visible;
+                element.Visibility = Visibility.Collapsed;
+            }
+
+            BtnOrders.Visibility = Visibility.Collapsed;
+            BtnAddProduct.Visibility = Visibility.Collapsed;
+        }
+
+        /// <summary>
+        /// Включает поиск и фильтры
+        /// </summary>
+        private void EnableSearchAndFilters()
+        {
+            foreach (UIElement element in PanelFilters.Children)
+            {
+                if (element != BtnAddProduct)
+                {
+                    element.Visibility = Visibility.Visible;
+                }
             }
         }
 
@@ -112,36 +148,38 @@ namespace ShoeStoreApp.Views
                 ).ToList();
             }
 
+            // Применяем фильтр
             if (CmbFilter.SelectedIndex > 0)
             {
                 switch (CmbFilter.SelectedIndex)
                 {
-                    case 1:
+                    case 1: // Товары в наличии
                         filteredProducts = filteredProducts.Where(p => p.QuantityInStock > 0).ToList();
                         break;
-                    case 2:
+                    case 2: // Товары со скидкой
                         filteredProducts = filteredProducts.Where(p => p.Discount > 0).ToList();
                         break;
-                    case 3:
+                    case 3: // Товары без скидки
                         filteredProducts = filteredProducts.Where(p => p.Discount == 0).ToList();
                         break;
                 }
             }
 
+            // Применяем сортировку
             if (CmbSort.SelectedIndex > 0)
             {
                 switch (CmbSort.SelectedIndex)
                 {
-                    case 1:
+                    case 1: // По цене (возрастание)
                         filteredProducts = filteredProducts.OrderBy(p => p.FinalPrice).ToList();
                         break;
-                    case 2:
+                    case 2: // По цене (убывание)
                         filteredProducts = filteredProducts.OrderByDescending(p => p.FinalPrice).ToList();
                         break;
-                    case 3:
+                    case 3: // По наименованию (А-Я)
                         filteredProducts = filteredProducts.OrderBy(p => p.ProductName).ToList();
                         break;
-                    case 4:
+                    case 4: // По наименованию (Я-А)
                         filteredProducts = filteredProducts.OrderByDescending(p => p.ProductName).ToList();
                         break;
                 }
@@ -170,12 +208,22 @@ namespace ShoeStoreApp.Views
 
         private void BtnOrders_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Функционал просмотра заказов будет реализован в следующих модулях.", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("Функционал просмотра заказов будет реализован в следующих модулях.",
+                "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void BtnAddProduct_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Функционал добавления товара будет реализован в следующих модулях.", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
+            // Проверка прав доступа (дополнительная безопасность)
+            if (LoginWindow.CurrentUser == null || LoginWindow.CurrentUser.Role.RoleName != "Администратор")
+            {
+                MessageBox.Show("У вас нет прав для добавления товаров!",
+                    "Доступ запрещен", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            MessageBox.Show("Функционал добавления товара будет реализован в следующих модулях.",
+                "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void BtnLogout_Click(object sender, RoutedEventArgs e)
