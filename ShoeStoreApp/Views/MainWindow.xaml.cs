@@ -226,7 +226,7 @@ namespace ShoeStoreApp.Views
             this.Close();
         }
     }
-
+    //
     public class ProductViewModel
     {
         public int ProductID { get; set; }
