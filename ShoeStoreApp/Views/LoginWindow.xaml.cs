@@ -32,7 +32,6 @@ namespace ShoeStoreApp.Views
             {
                 using (var db = new OrderManagementDBEntities())
                 {
-                    // ИСПРАВЛЕНО: добавлен Include("Role") для загрузки связанной сущности
                     var user = db.Users
                         .Include("Role")
                         .FirstOrDefault(u => u.Login == login && u.Password == password);

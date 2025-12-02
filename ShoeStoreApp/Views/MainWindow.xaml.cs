@@ -214,14 +214,6 @@ namespace ShoeStoreApp.Views
 
         private void BtnAddProduct_Click(object sender, RoutedEventArgs e)
         {
-            // Проверка прав доступа (дополнительная безопасность)
-            if (LoginWindow.CurrentUser == null || LoginWindow.CurrentUser.Role.RoleName != "Администратор")
-            {
-                MessageBox.Show("У вас нет прав для добавления товаров!",
-                    "Доступ запрещен", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
-
             MessageBox.Show("Функционал добавления товара будет реализован в следующих модулях.",
                 "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
         }

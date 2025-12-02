@@ -4,15 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="03599b467bd24d60857bf534c8f81757" Name="Diagram1">
+      <Diagram DiagramId="03599b467bd24d60857bf534c8f81757" Name="Diagram1" ZoomLevel="107">
         <EntityTypeShape EntityType="OrderManagementDBModel.Category" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
         <EntityTypeShape EntityType="OrderManagementDBModel.Manufacturer" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
         <EntityTypeShape EntityType="OrderManagementDBModel.OrderItem" Width="1.5" PointX="5.25" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="OrderManagementDBModel.Order" Width="1.5" PointX="3" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrderManagementDBModel.Order" Width="1.5" PointX="7.625" PointY="11.5" IsExpanded="true" />
         <EntityTypeShape EntityType="OrderManagementDBModel.OrderStatus" Width="1.5" PointX="0.75" PointY="13.125" IsExpanded="true" />
         <EntityTypeShape EntityType="OrderManagementDBModel.PickupPoint" Width="1.5" PointX="0.75" PointY="15.375" IsExpanded="true" />
         <EntityTypeShape EntityType="OrderManagementDBModel.Product" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="OrderManagementDBModel.Role" Width="1.5" PointX="1.5" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrderManagementDBModel.Role" Width="1.5" PointX="1.25" PointY="20.5" IsExpanded="true" />
         <EntityTypeShape EntityType="OrderManagementDBModel.Supplier" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
         <EntityTypeShape EntityType="OrderManagementDBModel.UnitOfMeasure" Width="1.5" PointX="0.75" PointY="10.25" IsExpanded="true" />
         <EntityTypeShape EntityType="OrderManagementDBModel.User" Width="1.5" PointX="0.75" PointY="17.75" IsExpanded="true" />
