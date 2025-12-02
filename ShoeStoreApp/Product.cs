@@ -17,26 +17,27 @@ namespace ShoeStoreApp
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
         {
-            this.OrderDetails = new HashSet<OrderDetail>();
+            this.OrderItems = new HashSet<OrderItem>();
         }
     
         public int ProductID { get; set; }
+        public string ArticleNumber { get; set; }
         public string ProductName { get; set; }
-        public string Description { get; set; }
-        public int CategoryID { get; set; }
-        public int ManufacturerID { get; set; }
-        public int SupplierID { get; set; }
         public int UnitID { get; set; }
         public decimal Price { get; set; }
-        public decimal Discount { get; set; }
-        public int QuantityInStock { get; set; }
+        public int SupplierID { get; set; }
+        public int ManufacturerID { get; set; }
+        public int CategoryID { get; set; }
+        public int CurrentDiscount { get; set; }
+        public int StockQuantity { get; set; }
+        public string Description { get; set; }
         public string Photo { get; set; }
     
         public virtual Category Category { get; set; }
         public virtual Manufacturer Manufacturer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+        public virtual ICollection<OrderItem> OrderItems { get; set; }
         public virtual Supplier Supplier { get; set; }
-        public virtual Unit Unit { get; set; }
+        public virtual UnitOfMeasure UnitOfMeasure { get; set; }
     }
 }

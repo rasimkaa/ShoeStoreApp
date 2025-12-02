@@ -4,25 +4,28 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="641be4c3e6674e908cc1e600ca5710b4" Name="Diagram1" ZoomLevel="83">
-        <EntityTypeShape EntityType="ShoeStoreDBModel.Category" Width="1.5" PointX="0.75" PointY="2.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShoeStoreDBModel.Manufacturer" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShoeStoreDBModel.Order" Width="1.5" PointX="8.125" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShoeStoreDBModel.OrderDetail" Width="1.5" PointX="5.25" PointY="1.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShoeStoreDBModel.Product" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShoeStoreDBModel.Role" Width="1.5" PointX="10.875" PointY="7.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShoeStoreDBModel.Supplier" Width="1.5" PointX="2.75" PointY="7.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShoeStoreDBModel.sysdiagram" Width="1.5" PointX="11.5" PointY="2.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShoeStoreDBModel.Unit" Width="1.5" PointX="5" PointY="6.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShoeStoreDBModel.User" Width="1.5" PointX="8.25" PointY="6.75" IsExpanded="true" />
-        <AssociationConnector Association="ShoeStoreDBModel.FK_Product_Category" ManuallyRouted="false" />
-        <AssociationConnector Association="ShoeStoreDBModel.FK_Product_Manufacturer" ManuallyRouted="false" />
-        <AssociationConnector Association="ShoeStoreDBModel.FK_Order_User" ManuallyRouted="false" />
-        <AssociationConnector Association="ShoeStoreDBModel.FK_OrderDetail_Order" ManuallyRouted="false" />
-        <AssociationConnector Association="ShoeStoreDBModel.FK_OrderDetail_Product" ManuallyRouted="false" />
-        <AssociationConnector Association="ShoeStoreDBModel.FK_Product_Supplier" ManuallyRouted="false" />
-        <AssociationConnector Association="ShoeStoreDBModel.FK_Product_Unit" ManuallyRouted="false" />
-        <AssociationConnector Association="ShoeStoreDBModel.FK_User_Role" ManuallyRouted="false" />
+      <Diagram DiagramId="03599b467bd24d60857bf534c8f81757" Name="Diagram1">
+        <EntityTypeShape EntityType="OrderManagementDBModel.Category" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrderManagementDBModel.Manufacturer" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrderManagementDBModel.OrderItem" Width="1.5" PointX="5.25" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrderManagementDBModel.Order" Width="1.5" PointX="3" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrderManagementDBModel.OrderStatus" Width="1.5" PointX="0.75" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrderManagementDBModel.PickupPoint" Width="1.5" PointX="0.75" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrderManagementDBModel.Product" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrderManagementDBModel.Role" Width="1.5" PointX="1.5" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrderManagementDBModel.Supplier" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrderManagementDBModel.UnitOfMeasure" Width="1.5" PointX="0.75" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrderManagementDBModel.User" Width="1.5" PointX="0.75" PointY="17.75" IsExpanded="true" />
+        <AssociationConnector Association="OrderManagementDBModel.FK__Products__Catego__4F7CD00D" ManuallyRouted="false" />
+        <AssociationConnector Association="OrderManagementDBModel.FK__Products__Manufa__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="OrderManagementDBModel.FK__OrderItem__Order__5DCAEF64" ManuallyRouted="false" />
+        <AssociationConnector Association="OrderManagementDBModel.FK__OrderItem__Produ__5EBF139D" ManuallyRouted="false" />
+        <AssociationConnector Association="OrderManagementDBModel.FK__Orders__PickupPo__59063A47" ManuallyRouted="false" />
+        <AssociationConnector Association="OrderManagementDBModel.FK__Orders__StatusID__5AEE82B9" ManuallyRouted="false" />
+        <AssociationConnector Association="OrderManagementDBModel.FK__Orders__UserID__59FA5E80" ManuallyRouted="false" />
+        <AssociationConnector Association="OrderManagementDBModel.FK__Products__Suppli__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="OrderManagementDBModel.FK__Products__UnitID__4CA06362" ManuallyRouted="false" />
+        <AssociationConnector Association="OrderManagementDBModel.FK__Users__RoleID__3B75D760" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

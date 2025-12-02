@@ -39,7 +39,7 @@ namespace ShoeStoreApp.Views
 
         try
         {
-            using (var db = new ShoeStoreDBEntities())
+            using (var db = new OrderManagementDBEntities())
             {
                 var user = db.Users.FirstOrDefault(u => u.Login == login && u.Password == password);
 

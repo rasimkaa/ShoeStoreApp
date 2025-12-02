@@ -12,18 +12,18 @@ namespace ShoeStoreApp
     using System;
     using System.Collections.Generic;
     
-    public partial class Unit
+    public partial class OrderStatus
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Unit()
+        public OrderStatus()
         {
-            this.Products = new HashSet<Product>();
+            this.Orders = new HashSet<Order>();
         }
     
-        public int UnitID { get; set; }
-        public string UnitName { get; set; }
+        public int StatusID { get; set; }
+        public string StatusName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

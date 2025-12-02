@@ -22,7 +22,6 @@ namespace ShoeStoreApp
     
         public int ManufacturerID { get; set; }
         public string ManufacturerName { get; set; }
-        public string Country { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product> Products { get; set; }

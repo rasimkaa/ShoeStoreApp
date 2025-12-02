@@ -17,20 +17,21 @@ namespace ShoeStoreApp
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Order()
         {
-            this.OrderDetails = new HashSet<OrderDetail>();
+            this.OrderItems = new HashSet<OrderItem>();
         }
     
         public int OrderID { get; set; }
         public System.DateTime OrderDate { get; set; }
+        public System.DateTime DeliveryDate { get; set; }
+        public int PickupPointID { get; set; }
         public Nullable<int> UserID { get; set; }
-        public string OrderStatus { get; set; }
-        public Nullable<System.DateTime> DeliveryDate { get; set; }
-        public string PickupPoint { get; set; }
-        public decimal TotalAmount { get; set; }
-        public string PickupCode { get; set; }
+        public int PickupCode { get; set; }
+        public int StatusID { get; set; }
     
-        public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+        public virtual ICollection<OrderItem> OrderItems { get; set; }
+        public virtual PickupPoint PickupPoint { get; set; }
+        public virtual OrderStatus OrderStatus { get; set; }
+        public virtual User User { get; set; }
     }
 }

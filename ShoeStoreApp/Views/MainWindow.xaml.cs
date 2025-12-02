@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace ShoeStoreApp.Views
 {
@@ -28,7 +27,7 @@ namespace ShoeStoreApp.Views
             else
             {
                 var user = LoginWindow.CurrentUser;
-                TxtUserInfo.Text = user.LastName + " " + user.FirstName + " " + user.Patronymic;
+                TxtUserInfo.Text = user.FullName;
 
                 if (user.Role.RoleName == "Менеджер" || user.Role.RoleName == "Администратор")
                 {
@@ -55,30 +54,31 @@ namespace ShoeStoreApp.Views
         {
             try
             {
-                using (var db = new ShoeStoreDBEntities())
+                using (var db = new OrderManagementDBEntities())
                 {
                     var products = db.Products
                         .Include("Category")
                         .Include("Manufacturer")
                         .Include("Supplier")
-                        .Include("Unit")
+                        .Include("UnitOfMeasure")
+                        .Where(p => p.IsActive)
                         .ToList();
 
                     allProducts = products.Select(p => new ProductViewModel
                     {
                         ProductID = p.ProductID,
+                        ArticleNumber = p.ArticleNumber,
                         ProductName = p.ProductName,
                         Description = p.Description,
                         CategoryName = p.Category.CategoryName,
                         ManufacturerName = p.Manufacturer.ManufacturerName,
                         SupplierName = p.Supplier.SupplierName,
-                        UnitName = p.Unit.UnitName,
+                        UnitName = p.UnitOfMeasure.UnitName,
                         Price = p.Price,
-                        Discount = p.Discount,
-                        QuantityInStock = p.QuantityInStock,
+                        Discount = p.CurrentDiscount,
+                        QuantityInStock = p.StockQuantity,
                         Photo = p.Photo
                     }).ToList();
-
 
                     filteredProducts = new List<ProductViewModel>(allProducts);
                     UpdateProductsList();
@@ -86,7 +86,8 @@ namespace ShoeStoreApp.Views
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ошибка загрузки товаров: " + ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Ошибка загрузки товаров: " + ex.Message + "\n\nВнутреннее исключение: " + ex.InnerException?.Message,
+                    "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -106,7 +107,8 @@ namespace ShoeStoreApp.Views
                 filteredProducts = filteredProducts.Where(p =>
                     p.ProductName.ToLower().Contains(searchText) ||
                     (p.Description != null && p.Description.ToLower().Contains(searchText)) ||
-                    p.ManufacturerName.ToLower().Contains(searchText)
+                    p.ManufacturerName.ToLower().Contains(searchText) ||
+                    p.ArticleNumber.ToLower().Contains(searchText)
                 ).ToList();
             }
 
@@ -188,6 +190,7 @@ namespace ShoeStoreApp.Views
     public class ProductViewModel
     {
         public int ProductID { get; set; }
+        public string ArticleNumber { get; set; }
         public string ProductName { get; set; }
         public string Description { get; set; }
         public string CategoryName { get; set; }
