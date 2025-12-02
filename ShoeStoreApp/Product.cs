@@ -32,6 +32,7 @@ namespace ShoeStoreApp
         public int StockQuantity { get; set; }
         public string Description { get; set; }
         public string Photo { get; set; }
+        public bool IsActive { get; set; }
     
         public virtual Category Category { get; set; }
         public virtual Manufacturer Manufacturer { get; set; }

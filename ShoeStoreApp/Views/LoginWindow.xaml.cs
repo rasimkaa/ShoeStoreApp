@@ -1,16 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using System.Data.Entity;
 
 namespace ShoeStoreApp.Views
 {
@@ -18,62 +9,66 @@ namespace ShoeStoreApp.Views
     /// Логика взаимодействия для LoginWindow.xaml
     /// </summary>
     public partial class LoginWindow : Window
-{
-    public static User CurrentUser { get; set; }
-
-    public LoginWindow()
     {
-        InitializeComponent();
-    }
+        public static User CurrentUser { get; set; }
 
-    private void BtnLogin_Click(object sender, RoutedEventArgs e)
-    {
-        string login = TxtLogin.Text.Trim();
-        string password = TxtPassword.Password;
-
-        if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
+        public LoginWindow()
         {
-            ShowError("Введите логин и пароль!");
-            return;
+            InitializeComponent();
         }
 
-        try
+        private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
-            using (var db = new OrderManagementDBEntities())
-            {
-                var user = db.Users.FirstOrDefault(u => u.Login == login && u.Password == password);
+            string login = TxtLogin.Text.Trim();
+            string password = TxtPassword.Password;
 
-                if (user != null)
+            if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
+            {
+                ShowError("Введите логин и пароль!");
+                return;
+            }
+
+            try
+            {
+                using (var db = new OrderManagementDBEntities())
                 {
-                    CurrentUser = user;
-                    MainWindow mainWindow = new MainWindow();
-                    mainWindow.Show();
-                    this.Close();
-                }
-                else
-                {
-                    ShowError("Неверный логин или пароль!");
+                    // ИСПРАВЛЕНО: добавлен Include("Role") для загрузки связанной сущности
+                    var user = db.Users
+                        .Include("Role")
+                        .FirstOrDefault(u => u.Login == login && u.Password == password);
+
+                    if (user != null)
+                    {
+                        CurrentUser = user;
+                        MainWindow mainWindow = new MainWindow();
+                        mainWindow.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        ShowError("Неверный логин или пароль!");
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                ShowError("Ошибка подключения к БД: " + ex.Message +
+                    (ex.InnerException != null ? "\n\nВнутреннее исключение: " + ex.InnerException.Message : ""));
+            }
         }
-        catch (Exception ex)
+
+        private void BtnGuest_Click(object sender, RoutedEventArgs e)
         {
-            ShowError("Ошибка: " + ex.Message);
+            CurrentUser = null;
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            this.Close();
+        }
+
+        private void ShowError(string message)
+        {
+            TxtError.Text = message;
+            TxtError.Visibility = Visibility.Visible;
         }
     }
-
-    private void BtnGuest_Click(object sender, RoutedEventArgs e)
-    {
-        CurrentUser = null;
-        MainWindow mainWindow = new MainWindow();
-        mainWindow.Show();
-        this.Close();
-    }
-
-    private void ShowError(string message)
-    {
-        TxtError.Text = message;
-        TxtError.Visibility = Visibility.Visible;
-    }
-}
 }
