@@ -5,7 +5,9 @@
         Height="650" Width="400"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
-        Background="#F5F5F5">
+        Background="#FFFFFF"
+        FontFamily="Times New Roman"
+        Icon="/Resources/Icon.ico">
 
     <Grid Margin="0,0,0,-6">
         <Grid.RowDefinitions>
@@ -13,7 +15,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Border Grid.Row="0" Background="White" Padding="20">
+        <Border Grid.Row="0" Background="#7FFF00" Padding="20">
             <StackPanel HorizontalAlignment="Center">
                 <Image Source="/Resources/icon.png" Height="80" Width="80" 
                        Margin="0,0,0,10"
@@ -21,36 +23,39 @@
                 <TextBlock Text="ООО «Обувь»" 
                            FontSize="24" 
                            FontWeight="Bold" 
-                           Foreground="#333333"
-                           HorizontalAlignment="Center"/>
+                           Foreground="#000000"
+                           HorizontalAlignment="Center"
+                           FontFamily="Times New Roman"/>
             </StackPanel>
         </Border>
 
-        <Border Grid.Row="1" Background="White" 
+        <Border Grid.Row="1" Background="#FFFFFF" 
                 Margin="20" 
                 Padding="30"
-                CornerRadius="10">
-            <Border.Effect>
-                <DropShadowEffect BlurRadius="10" ShadowDepth="2" Opacity="0.3"/>
-            </Border.Effect>
+                CornerRadius="10"
+                BorderBrush="#CCCCCC"
+                BorderThickness="1">
 
             <StackPanel VerticalAlignment="Center">
                 <TextBlock Text="Вход в систему" 
                            FontSize="20" 
                            FontWeight="Bold" 
-                           Foreground="#333333"
+                           Foreground="#000000"
                            Margin="0,0,0,20"
-                           HorizontalAlignment="Center"/>
+                           HorizontalAlignment="Center"
+                           FontFamily="Times New Roman"/>
 
-                <TextBlock Text="Логин:" FontSize="14" Foreground="#666666" Margin="0,5,0,2"/>
+                <TextBlock Text="Логин:" FontSize="14" Foreground="#000000" Margin="0,5,0,2" FontFamily="Times New Roman"/>
                 <TextBox x:Name="TxtLogin" 
                          FontSize="14"
+                         FontFamily="Times New Roman"
                          Padding="10,8"
                          Margin="0,5"/>
 
-                <TextBlock Text="Пароль:" FontSize="14" Foreground="#666666" Margin="0,15,0,2"/>
+                <TextBlock Text="Пароль:" FontSize="14" Foreground="#000000" Margin="0,15,0,2" FontFamily="Times New Roman"/>
                 <PasswordBox x:Name="TxtPassword" 
                              FontSize="14"
+                             FontFamily="Times New Roman"
                              Padding="10,8"
                              Margin="0,5"
                              PasswordChar="●"/>
@@ -59,15 +64,17 @@
                            Text="" 
                            Foreground="Red" 
                            FontSize="12"
+                           FontFamily="Times New Roman"
                            Margin="0,10,0,0"
                            TextWrapping="Wrap"
                            HorizontalAlignment="Center"
                            Visibility="Collapsed"/>
 
                 <Button Content="Войти" 
-                        Background="#4CAF50"
-                        Foreground="White"
+                        Background="#00FA9A"
+                        Foreground="#000000"
                         FontSize="14"
+                        FontFamily="Times New Roman"
                         FontWeight="Bold"
                         Padding="10,8"
                         Margin="0,20,0,10"
@@ -77,9 +84,10 @@
                         Click="BtnLogin_Click"/>
 
                 <Button Content="Продолжить как гость" 
-                        Background="#2196F3"
-                        Foreground="White"
+                        Background="#7FFF00"
+                        Foreground="#000000"
                         FontSize="14"
+                        FontFamily="Times New Roman"
                         FontWeight="Bold"
                         Padding="10,8"
                         Height="40"

@@ -226,7 +226,7 @@ namespace ShoeStoreApp.Views
             this.Close();
         }
     }
-    //
+
     public class ProductViewModel
     {
         public int ProductID { get; set; }
@@ -284,17 +284,22 @@ namespace ShoeStoreApp.Views
 
         public string PriceFormatted
         {
-            get { return Price.ToString("N2") + " руб"; }
+            get { return Price.ToString("N2") + " ₽"; }
         }
 
         public string FinalPriceFormatted
         {
-            get { return FinalPrice.ToString("N2") + " руб"; }
+            get { return FinalPrice.ToString("N2") + " ₽"; }
         }
 
         public string DiscountFormatted
         {
             get { return "Скидка: " + Discount + "%"; }
+        }
+
+        public string DiscountBadge
+        {
+            get { return "-" + Discount + "%"; }
         }
 
         public string StockFormatted
